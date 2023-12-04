@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;// Required when using Event data.
 
 public class CamaraBotonPresionado : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    //Button botonCamara;
     public GameObject panelOpciones;
     Vector3 panelOpcionesPos;
     Vector3 ocultarAbajo;
