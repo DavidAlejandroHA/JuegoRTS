@@ -9,7 +9,7 @@ public class ValoresAnimaciones : MonoBehaviour
     public static Vector3 vectorMovOpciones;
     public static Vector3 vectorMovMenuObjetos;
     public static float tiempoAnimacion = 0.5f;
-    public static float ocultarPosHaciaAbajo = 20f;
+    public static float ocultarPosHaciaAbajo = 60f;
     public static float movimientoMenuObjetos = 240f;
     // Start is called before the first frame update
     void Start()

@@ -22,13 +22,12 @@ public class CerrarMenuObjetosBoton : MonoBehaviour, IPointerClickHandler
 
     public void mostrarMenuPrincipal()
     {
-        panelOpciones.transform.position = panelOpciones.transform.position - ValoresAnimaciones.vectorMovOpciones;
-        panelCrearObjetos.transform.position = panelCrearObjetos.transform.position -
-            ValoresAnimaciones.vectorMovMenuObjetos;
-        LeanTween.moveY(panelOpciones, ValoresAnimaciones.panelOpcionesPos.x, ValoresAnimaciones.tiempoAnimacion)
+        panelOpciones.transform.position = panelOpciones.transform.position;// - ValoresAnimaciones.vectorMovOpciones;
+        panelCrearObjetos.transform.position = panelCrearObjetos.transform.position;// - ValoresAnimaciones.vectorMovMenuObjetos;
+        LeanTween.moveY(panelOpciones, ValoresAnimaciones.panelOpcionesPos.y, ValoresAnimaciones.tiempoAnimacion)
             .setEaseInCubic();
 
-        LeanTween.moveX(panelCrearObjetos, ValoresAnimaciones.movimientoMenuObjetos, ValoresAnimaciones.tiempoAnimacion)
+        LeanTween.moveX(panelCrearObjetos, ValoresAnimaciones.panelCrearObjetosPos.x, ValoresAnimaciones.tiempoAnimacion)
             .setEaseOutCubic();
     }
 

@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Madera
     second: {fileID: 2100000, guid: 5d1dfa2feae34f44a9d1e183a33a4d49, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: greenery-bouquet-with-eucalyptus-spring-leaves-and-branches-bot
+    second: {fileID: 2100000, guid: 193d4a008ea10b14eab0722cc61d37ae, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
