@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 50afd93b5311b5849a61a8d84b3d6ee1
+guid: 1e69c241beb3e7d48aed6bf4b4cc5110
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Madera
-    second: {fileID: 2100000, guid: 5d1dfa2feae34f44a9d1e183a33a4d49, type: 2}
+      name: Material.001
+    second: {fileID: 2100000, guid: f55bd461056ba064ca7ecd0421f772c3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

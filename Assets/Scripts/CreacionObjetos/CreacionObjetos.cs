@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class CreacionObjetos : MonoBehaviour, IPointerClickHandler
 {
     public GameObject objeto;
-    GameObject objetoCopiado;
+    static GameObject objetoCopiado;
     Material[] materialesObjeto;
     Material[] materialesOriginalesObjeto;
     //Color32 colorOriginalObjeto;
@@ -14,6 +14,10 @@ public class CreacionObjetos : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        /*if (objetoCopiado != null)
+        {
+            Destroy(objetoCopiado);
+        }*/
         generarObjeto(objeto);
     }
 
@@ -24,26 +28,36 @@ public class CreacionObjetos : MonoBehaviour, IPointerClickHandler
         {
             Ray rayo = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit golpeRayo;
-            if (Physics.Raycast(rayo, out golpeRayo, 100000f))
-            {
-                objetoCopiado = Object.Instantiate(objeto, golpeRayo.point, objeto.transform.rotation);
+            bool colisionConRayo = Physics.Raycast(rayo, out golpeRayo, 100000f);
+            /*if (colisionConRayo)
+            {*/
+            //
+            objetoCopiado = Object.Instantiate(objeto,
+                    !colisionConRayo ? objeto.transform.position : golpeRayo.point, objeto.transform.rotation);
                 //objetoCopiado.GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(49f, 255f, 255f)); // x
 
-                materialesObjeto = objetoCopiado.GetComponent<Renderer>().materials;
-                //Debug.Log(materialesOriginalesObjeto);
-                materialesOriginalesObjeto = materialesObjeto;
-                foreach (Material mat in materialesObjeto)
-                {
-                    mat.color = new Color32(49, 255, 255, 255);
-                    //Debug.Log(mat.color);
-                }
+                seleccionarObjeto();
 
-                /*colorOriginalObjeto = objetoCopiado.GetComponent<Renderer>().material.color;
-                objetoCopiado.GetComponent<Renderer>().material.color = new Color32(49, 255, 255, 255); // v
-                */
+
                 objetoSiendoArrastrado = true;
-            }
+            //}
         }
+    }
+
+    void seleccionarObjeto()
+    {
+        materialesObjeto = objetoCopiado.GetComponent<Renderer>().materials;
+        //Debug.Log(materialesOriginalesObjeto);
+        materialesOriginalesObjeto = materialesObjeto;
+        foreach (Material mat in materialesObjeto)
+        {
+            mat.color = new Color32(49, 255, 255, 255);
+            //Debug.Log(mat.color);
+        }
+
+        /*colorOriginalObjeto = objetoCopiado.GetComponent<Renderer>().material.color;
+        objetoCopiado.GetComponent<Renderer>().material.color = new Color32(49, 255, 255, 255); // v
+        */
     }
 
     // Start is called before the first frame update
@@ -63,8 +77,8 @@ public class CreacionObjetos : MonoBehaviour, IPointerClickHandler
             {
                 objetoCopiado.gameObject.transform.position = golpeRayo.point;
             }
-
-            if (Input.GetMouseButtonDown(0))
+            //Debug.Log(objetoCopiado.gameObject.transform.position);
+            if (Input.GetMouseButtonDown(0)/* && EventSystem.current.IsPointerOverGameObject()*/)
             {
                 //objetoCopiado.GetComponent<Renderer>().material.color = colorOriginalObjeto;
                 //objetoCopiado.GetComponent<Renderer>().materials = materialesOriginalesObjeto; // ?
@@ -74,6 +88,7 @@ public class CreacionObjetos : MonoBehaviour, IPointerClickHandler
                     //Debug.Log(mat.color);
                 }
                 objetoSiendoArrastrado = false;
+                //objetoCopiado = null;
             }
         }
     }
