@@ -9,6 +9,7 @@ public class CreacionObjetos : MonoBehaviour, IPointerClickHandler
     static GameObject objetoCopiado;
     Material[] materialesObjeto;
     Material[] materialesOriginalesObjeto;
+    Vector3 boxColliderSizeCopia;
     //Color32 colorOriginalObjeto;
     bool objetoSiendoArrastrado = false;
 
@@ -34,6 +35,13 @@ public class CreacionObjetos : MonoBehaviour, IPointerClickHandler
             //
             objetoCopiado = Object.Instantiate(objeto,
                     !colisionConRayo ? objeto.transform.position : golpeRayo.point, objeto.transform.rotation);
+            // Se cambia el "tag" <<original>> del objeto a falso para posteriormente poder borrar todos
+            // excepto el original
+            objetoCopiado.GetComponent<ObjetoOriginal>().original = false;
+
+            // Esto es para que al colocarlo no se buguee con el raycast todo el rato, hasta que se termine de colocar
+            boxColliderSizeCopia = objetoCopiado.GetComponent<BoxCollider>().size;
+            objetoCopiado.GetComponent<BoxCollider>().size = new Vector3(0f, 0f, 0f);
                 //objetoCopiado.GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(49f, 255f, 255f)); // x
 
                 seleccionarObjeto();
@@ -87,6 +95,9 @@ public class CreacionObjetos : MonoBehaviour, IPointerClickHandler
                     mat.color = new Color32(255, 255, 255, 255);
                     //Debug.Log(mat.color);
                 }
+                objetoCopiado.GetComponent<BoxCollider>().size = boxColliderSizeCopia;
+                NumObjetos.numObjetos++;
+                NumObjetos.actualizarNumObjetos();
                 objetoSiendoArrastrado = false;
                 //objetoCopiado = null;
             }
