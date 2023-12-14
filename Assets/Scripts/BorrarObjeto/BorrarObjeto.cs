@@ -27,7 +27,7 @@ public class BorrarObjeto : MonoBehaviour, IPointerClickHandler
         {
             borrarObjeto();
             borrandoObjeto = false;
-            Debug.Log(borrandoObjeto);
+            //Debug.Log(borrandoObjeto);
             panelOpciones.transform.position = panelOpciones.transform.position + ocultarAbajo;
             LeanTween.moveY(panelOpciones, panelOpcionesPos.y, tiempoAnimacion)
                 .setEaseOutCubic();
@@ -40,7 +40,9 @@ public class BorrarObjeto : MonoBehaviour, IPointerClickHandler
         RaycastHit golpeRayo;
         if (Physics.Raycast(rayo, out golpeRayo, 100000f, mascara))
         {
-            Debug.Log("a");
+            //Debug.Log("a");
+            NumObjetos.numObjetos--;
+            NumObjetos.actualizarNumObjetos();
             Destroy(golpeRayo.transform.gameObject);
         }
 

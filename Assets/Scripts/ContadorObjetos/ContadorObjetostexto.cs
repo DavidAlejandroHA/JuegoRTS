@@ -10,7 +10,8 @@ public class ContadorObjetosTexto : MonoBehaviour
     void Start()
     {
         objetoTexto = GetComponent<TextMeshProUGUI>();
-        //objetoTexto.text = objetoTexto.text + "0";
+        NumObjetos.objetoTextoOriginal = objetoTexto.text;
+        objetoTexto.text = objetoTexto.text + "0";
     }
 
     // Update is called once per frame

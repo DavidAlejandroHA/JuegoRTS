@@ -6,10 +6,10 @@ public class NumObjetos : MonoBehaviour
 {
     // Start is called before the first frame update
     public static int numObjetos = 0;
-    static string objetoTextoOriginal;
+    public static string objetoTextoOriginal;
     void Start()
     {
-        objetoTextoOriginal = ContadorObjetosTexto.objetoTexto.text;
+        //objetoTextoOriginal = ContadorObjetosTexto.objetoTexto.text;
     }
 
     // Update is called once per frame
